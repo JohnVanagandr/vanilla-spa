@@ -3,23 +3,22 @@ import { initRouter } from "./src/router.js";
 async function loadView(view, params = {}) {
   try {
     const basePath = window.location.pathname.includes("spa")
-      ? "/spa/src/views/"
-      : "/src/views/";
+      ? "/spa/src/"
+      : "/src/";
     
     console.log(basePath);
     
     
-    const response = await fetch(`${basePath}${view}.html`);
+    const response = await fetch(`${basePath}/views/${view}.html`);
     if (!response.ok) throw new Error(`No se pudo cargar ${view}`);
 
     const html = await response.text();
     document.getElementById("app").innerHTML = html;
 
     // Cargar controlador dinámicamente si existe
-    try {
-      // console.log(`/src/controllers/${view}Controller.js`);
-      
-      const module = await import(`/src/controllers/${view}Controller.js`);
+    try {      
+      const module = await import(`${basePath}/controllers/${view}Controller.js`
+      );
       module.default(params);
     } catch (err) {
       console.warn(`No se encontró controlador para ${view}`);
