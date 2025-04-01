@@ -1,4 +1,5 @@
 import "../components/image/my-img.js";
+import "../components/card/my-card.js"
 
 export default async function aboutController(params) {
   const todoList = document.querySelector("#todo");
@@ -39,29 +40,13 @@ export default async function aboutController(params) {
     try {
       if (characters.length > 0) {
         const fragmen = document.createDocumentFragment();
-        characters.forEach((todo) => {
-          const div = document.createElement("div");
-          const card_body = document.createElement("div");
-          // const img = document.createElement("img");
-          const img = document.createElement("my-img");
-          const h2 = document.createElement("h2");
-          const p = document.createElement("p");
-          const footer = document.createElement("div");
-
-          card_body.classList.add("card__body");
-          card_body.append(img)
-
-          div.setAttribute("data-id", todo.id);
-          div.classList.add("card");
-          img.setAttribute("src", todo.image);
-          footer.classList.add("card__footer");
-          h2.textContent = todo.name;
-          p.textContent = todo.race;
-          footer.append(h2, p);
-
-          div.append(card_body, footer);
-          fragmen.append(div);
-          console.log(todo);
+        characters.forEach((character) => {
+          const card = document.createElement("my-card");
+          card.setAttribute("id", character.id);
+          card.setAttribute("name", character.name);
+          card.setAttribute("race", character.race);
+          card.setAttribute("image", character.image);
+          fragmen.append(card)
         });
         todoList.append(fragmen);
         currentPage++; // Pasar a la siguiente página

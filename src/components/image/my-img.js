@@ -6,7 +6,6 @@ class MyImage extends HTMLElement {
     this.shadow.appendChild(this.img); // Añadimos la etiqueta img al shadow DOM
 
     // Añadimos estilos básicos directamente al componente
-    // Añadimos estilos básicos directamente al componente
     const basePath = window.location.pathname.includes("spa")
       ? "/spa/src/"
       : "/src/";

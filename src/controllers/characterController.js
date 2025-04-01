@@ -13,11 +13,10 @@ export default function contactController(params) {
         `https://dragonball-api.com/api/characters/${id}`
       );
       const data = await response.json();
-      console.log(data);
+      // console.log(data);
       const img = document.createElement("my-img");
       img.setAttribute("src", data.image);
       character.append(img)
-      console.log(img);
       
       // personaje.setAttribute("src", data.image);
       name.textContent = data.name;
