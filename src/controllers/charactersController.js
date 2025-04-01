@@ -1,5 +1,6 @@
-export default async function aboutController(params) {
+import "../components/image/my-img.js";
 
+export default async function aboutController(params) {
   const todoList = document.querySelector("#todo");
   const loadingDiv = document.getElementById("loading");
 
@@ -10,20 +11,22 @@ export default async function aboutController(params) {
 
   // API de Dragon Ball Z (reemplaza con tu API real si es diferente)
   async function fetchCharacters(page, limit) {
-      try {
-          const response = await fetch(`https://dragonball-api.com/api/characters?page=${page}&limit=${limit}`);
-          const data = await response.json();
+    try {
+      const response = await fetch(
+        `https://dragonball-api.com/api/characters?page=${page}&limit=${limit}`
+      );
+      const data = await response.json();
 
-          // Si no hay más datos, dejamos de cargar
-          if (!data || !data.items || data.items.length < limit) {
-              hasMoreData = false;
-          }
-
-          return data.items || [];
-      } catch (error) {
-          console.error("Error obteniendo datos:", error);
-          return [];
+      // Si no hay más datos, dejamos de cargar
+      if (!data || !data.items || data.items.length < limit) {
+        hasMoreData = false;
       }
+
+      return data.items || [];
+    } catch (error) {
+      console.error("Error obteniendo datos:", error);
+      return [];
+    }
   }
 
   async function loadMoreCharacters() {
@@ -31,26 +34,32 @@ export default async function aboutController(params) {
     isLoading = true;
     loadingDiv.style.display = "block";
 
-    const characters = await fetchCharacters(currentPage, limit);    
+    const characters = await fetchCharacters(currentPage, limit);
 
     try {
       if (characters.length > 0) {
         const fragmen = document.createDocumentFragment();
         characters.forEach((todo) => {
           const div = document.createElement("div");
-          const img = document.createElement("img");
+          const card_body = document.createElement("div");
+          // const img = document.createElement("img");
+          const img = document.createElement("my-img");
           const h2 = document.createElement("h2");
           const p = document.createElement("p");
           const footer = document.createElement("div");
 
-          img.setAttribute("src", todo.image);
+          card_body.classList.add("card__body");
+          card_body.append(img)
+
+          div.setAttribute("data-id", todo.id);
           div.classList.add("card");
+          img.setAttribute("src", todo.image);
           footer.classList.add("card__footer");
           h2.textContent = todo.name;
           p.textContent = todo.race;
           footer.append(h2, p);
 
-          div.append(img, footer);
+          div.append(card_body, footer);
           fragmen.append(div);
           console.log(todo);
         });
@@ -60,7 +69,6 @@ export default async function aboutController(params) {
 
       loadingDiv.style.display = "none";
       isLoading = false;
-
     } catch (error) {
       console.error("Error cargando datos:", error);
     }
@@ -68,14 +76,22 @@ export default async function aboutController(params) {
 
   // Detectar el final de la página y cargar más contenido
   window.addEventListener("scroll", () => {
-      if (isLoading || !hasMoreData) return;
+    if (isLoading || !hasMoreData) return;
 
-      const { scrollTop, scrollHeight, clientHeight } = document.documentElement;
-      if (scrollTop + clientHeight >= scrollHeight - 10) {
-          loadMoreCharacters();
-      }
-  })
-  
-  loadMoreCharacters()
+    const { scrollTop, scrollHeight, clientHeight } = document.documentElement;
+    if (scrollTop + clientHeight >= scrollHeight - 10) {
+      loadMoreCharacters();
+    }
+  });
 
- };
+  document.addEventListener("click", (e) => {
+    let card = e.target.closest(".card");
+    if (card) {
+      let cardId = card.dataset.id;
+      // Actualizar la URL sin recargar la página
+      location.hash = `#/character/${cardId}`;
+    }
+  });
+
+  loadMoreCharacters();
+}

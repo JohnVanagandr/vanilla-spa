@@ -4,10 +4,7 @@ async function loadView(view, params = {}) {
   try {
     const basePath = window.location.pathname.includes("spa")
       ? "/spa/src/"
-      : "/src/";
-    
-    console.log(basePath);
-    
+      : "/src/";    
     
     const response = await fetch(`${basePath}/views/${view}.html`);
     if (!response.ok) throw new Error(`No se pudo cargar ${view}`);

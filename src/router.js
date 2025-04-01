@@ -10,9 +10,7 @@ export function initRouter(loadView) {
 
     if (!hash) {
       return loadView("home"); // Página por defecto
-    }
-    console.log(hash.split("/"));
-    
+    }    
     const [route, ...params] = hash.split("/"); // Separar ruta y parámetros
 
     if (routes[route]) {
