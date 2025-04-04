@@ -121,6 +121,7 @@ a {
   grid-area: descripcion;
   place-self: end center;
   padding: 0 1rem;
+  text-align: center;
 }
 
 .descripcion__titulo {
@@ -295,7 +296,7 @@ a {
   .saludo {
     display: grid;
     grid-template-columns: 1fr;
-    grid-template-rows: 380px 1fr 40px;
+    grid-template-rows: 280px 1fr 40px;
     grid-template-areas:
       "carrusel"
       "descripcion""botonera";
@@ -303,11 +304,10 @@ a {
     gap: 10px;
     max-width: 90%;
     height: calc(100vh - 120px);
-    margin: 0 auto;
-    margin-top: 40px;
+    margin: 20px auto;
   }
 
-  .descripcion{
+  .descripcion {
     place-self: start center;
   }
 
