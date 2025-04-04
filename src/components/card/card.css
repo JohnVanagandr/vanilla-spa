@@ -5,7 +5,9 @@
 }
 
 .card {
-  background-color: #ebe9e9;
+  background-color: var(--background-content);
+  color: var(--color-texto-principal);
+  border: 1px solid var(--color-border);
   height: auto;
   border-radius: 10px;
   transition: 1s;
@@ -18,15 +20,21 @@
 }
 
 .card:hover {
-  background: rgb(177, 179, 183);
-  background: rgb(251, 192, 45);
+  background: var(--color-secundario);
+  color: var(--color-texto-principal);
+  border: 1px solid var(--color-secundario);
   transition: 1s;
 }
+
+/* .card:hover .card__footer {
+  border-top: 1px solid var(--color-secundario);
+  transition: 0.8s;
+} */
 
 .card__body {
   display: block;
   position: relative;
-  width: 320px;
+  width: 240px;
   height: 450px;
   margin: auto;
   object-fit: scale-down;
@@ -35,22 +43,33 @@
 .card__footer {
   width: 100%;
   padding: 0.75rem;
-  color: rgb(255, 255, 255);
+  color: var(--color-texto-principal);
+  /* border-top: 1px solid var(--color-border); */
   display: flex;
   gap: 6px;
   flex-direction: column;
-  background: rgb(60, 62, 68);
-  border-radius: 0px 0px 6px 6px;
   font-size: 16px;
+  text-align: center;
   cursor: pointer;
 }
 
-.card__footer p {
-  color: rgb(251, 192, 45);
-  font-size: 20px;
+.card__footer h2 {
+  color: var(--color-texto-secundario);
+  transition: 0.8s;
 }
 
-.card:has(.card__footer:hover) {
-  background: rgb(60, 62, 68);
+.card__footer p {
+  color: var(--color-texto-secundario);
+  transition: 0.8s;
+}
+
+/* .card:has(.card__footer:hover) {
+  border-top: 1px solid var(--color-secundario);
   transition: 1s;
+} */
+
+.card:has(.card__footer:hover) h2,
+.card:has(.card__footer:hover) p {
+  color: var(--color-blanco);
+  transition: 0.8s;
 }

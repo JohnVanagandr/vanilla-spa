@@ -19,8 +19,7 @@ class MyCard extends HTMLElement {
     // Crear y agregar el enlace al archivo CSS externo al Shadow DOM
     const link = document.createElement("link");
     link.rel = "stylesheet";
-    link.href = `${basePath}/components/card/card.css`;
-    this.shadowDOM.appendChild(link);
+    link.href = `${basePath}components/card/card.css`;
     this.shadowDOM.innerHTML = "";
 
     this.shadowDOM.innerHTML = `

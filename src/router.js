@@ -1,26 +1,31 @@
-export function initRouter(loadView) {
+export const initRouter = (loadView) => {
+  // Constante para almacenar el objeto que contiene las rutas
   const routes = {
     home: () => loadView("home"),
     characters: () => loadView("characters"),
     character: (id) => loadView("character", { characterId : id }),
   };
-
-  function handleRouteChange() {
-    let hash = location.hash.slice(2); // Eliminar `#/`
+  // Método para detectar un cambio en las rutas
+  const handleRouteChange = () => {
+    // Eliminar `#/`
+    let hash = location.hash.slice(2);
 
     if (!hash) {
-      return loadView("home"); // Página por defecto
-    }    
-    const [route, ...params] = hash.split("/"); // Separar ruta y parámetros
+      // Página por defecto
+      return loadView("home");
+    }
+    // Separar la ruta y  losparámetros
+    const [route, ...params] = hash.split("/");
 
     if (routes[route]) {
-      routes[route](...params); // Pasar todos los parámetros a la función
+      // Pasar todos los parámetros a la función
+      routes[route](...params);
     } else {
-      loadView("404"); // Página no encontrada
+      // Cargamos la página no encontrada
+      loadView("404");
     }
   }
-
-  // Detectar cambios en la URL
+  // Eventos para detectar cambios en la URL
   window.addEventListener("hashchange", handleRouteChange);
   window.addEventListener("DOMContentLoaded", handleRouteChange);
 }

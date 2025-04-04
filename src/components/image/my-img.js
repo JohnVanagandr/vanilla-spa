@@ -12,7 +12,7 @@ class MyImage extends HTMLElement {
     // Crear y agregar el enlace al archivo CSS externo al Shadow DOM
     const link = document.createElement("link");
     link.rel = "stylesheet";
-    link.href = `${basePath}/components/image/image.css`;
+    link.href = `${basePath}components/image/image.css`;
     this.shadow.appendChild(link);
   }
 

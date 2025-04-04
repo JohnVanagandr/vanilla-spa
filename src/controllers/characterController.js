@@ -1,9 +1,8 @@
 import "../components/image/my-img.js";
-export default function contactController(params) {
+const contactController = (params) => {
   let { characterId } = params;
 
   const character = document.querySelector(".character");
-  const personaje = document.querySelector(".character img");
   const name = document.querySelector(".description h2");
   const description = document.querySelector(".description p");
 
@@ -18,7 +17,6 @@ export default function contactController(params) {
       img.setAttribute("src", data.image);
       character.append(img)
       
-      // personaje.setAttribute("src", data.image);
       name.textContent = data.name;
       description.textContent = data.description;
     } catch (error) {
@@ -28,3 +26,4 @@ export default function contactController(params) {
 
   loadCharacter(characterId);
 }
+export default contactController;
