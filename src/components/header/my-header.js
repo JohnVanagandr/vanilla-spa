@@ -11,7 +11,7 @@ class MyHeader extends HTMLElement {
 
   render() {
     const basePath = window.location.pathname.includes("spa")
-      ? "/spa/src/"
+      ? "/vanilla-spa/src/"
       : "/src/";
     // Crear y agregar el enlace al archivo CSS externo al Shadow DOM
     const link = document.createElement("link");

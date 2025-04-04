@@ -14,7 +14,7 @@ const loadView = async (view, params = {}) => {
 
   try {
     const basePath = window.location.pathname.includes("spa")
-      ? "/spa/src/"
+      ? "/vanilla-spa/src/"
       : "/src/";
 
     const response = await fetch(`${basePath}/views/${view}.html`);
