@@ -40,7 +40,7 @@ class MyHeader extends HTMLElement {
           </h2>
           <nav class="menu">
             <a href="#/characters">Personajes</a>
-            <a href="#/">Planetas</a>
+            <a href="#/planets">Planetas</a>
           </nav>
           <div class="social">
             <a href="#/">

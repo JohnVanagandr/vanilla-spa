@@ -4,6 +4,7 @@ export const initRouter = (loadView) => {
     home: () => loadView("home"),
     characters: () => loadView("characters"),
     character: (id) => loadView("character", { characterId : id }),
+    planets: () => loadView("planets"),
   };
   // Método para detectar un cambio en las rutas
   const handleRouteChange = () => {

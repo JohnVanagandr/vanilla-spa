@@ -17,7 +17,7 @@ const loadView = async (view, params = {}) => {
       ? "/vanilla-spa/src/"
       : "/src/";
 
-    const response = await fetch(`${basePath}/views/${view}.html`);
+    const response = await fetch(`${basePath}views/${view}.html`);
     if (!response.ok) throw new Error(`No se pudo cargar ${view}`);
 
     const html = await response.text();
@@ -26,7 +26,7 @@ const loadView = async (view, params = {}) => {
     // Cargar controlador dinámicamente si existe
     try {
       const module = await import(
-        `${basePath}/controllers/${view}Controller.js`
+        `${basePath}controllers/${view}Controller.js`
       );
       module.default(params);
     } catch (err) {
