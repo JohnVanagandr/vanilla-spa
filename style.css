@@ -168,7 +168,7 @@ a {
   font-family: monospace;
   font-weight: bold;
   cursor: pointer;
-  transition: 1s;
+  transition: transform 0.5s ease, opacity 0.5s ease;
 }
 
 .prev:hover, .next:hover {
@@ -223,7 +223,24 @@ a {
   grid-template-columns: 40px 1fr 40px;
   grid-template-rows: minmax(450px, 700px);
   place-items: center;
+  overflow: hidden;
 }
+
+.character .prev{
+  transform: translateX(-100%);
+  opacity: 0;
+}
+
+.character .next{
+  transform: translateX(100%);
+  opacity: 0;
+}
+
+.character:hover .prev, .character:hover .next{
+  opacity: 1;
+  transform: translateX(0);
+}
+
 
 .characters {
   height: 100%;
