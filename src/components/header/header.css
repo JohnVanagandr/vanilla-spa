@@ -11,6 +11,7 @@ a {
 
 .container {
   max-width: 1350px;
+  width: 98%;
   margin: 0 auto;
 }
 
@@ -50,7 +51,7 @@ a {
   align-items: center;
   justify-content: center;
   gap: 10px;
-  flex: 0 1 685px;
+  flex: 0 1 610px;
 }
 
 .menu a {

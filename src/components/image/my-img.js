@@ -18,13 +18,16 @@ class MyImage extends HTMLElement {
 
   // Cuando el atributo 'src' cambia, actualizamos la imagen
   static get observedAttributes() {
-    return ["src"];
+    return ["src", "class"];
   }
 
   // Callback cuando el atributo cambia
   attributeChangedCallback(name, oldValue, newValue) {
     if (name === "src") {
       this.img.src = newValue; // Actualizamos la fuente de la imagen
+    }
+    if (name === "class") {
+      this.img.classList = newValue;
     }
   }
 

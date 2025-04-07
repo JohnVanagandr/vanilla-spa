@@ -93,7 +93,12 @@ a {
 
 .container {
   max-width: 1350px;
+  width: 98%;
   margin: 0 auto;
+}
+
+.d-none {
+  display: none;
 }
 
 
@@ -135,7 +140,7 @@ a {
 
 .descripcion__parrafo {
   color: var(--color-texto-secundario);
-  font-family: var(--font-size-large);
+  font-size: var(--font-size-base);
   padding: 8px 4px;
   opacity: 0;
   animation: animate 1s ease-in-out 0.6s 1 forwards;
@@ -198,32 +203,45 @@ a {
 **/
 .layout-character {
   display: grid;
-  grid-template-columns: 550px 1fr;
+  grid-template-columns: 420px 1fr;
   grid-template-rows: auto 1fr;
   grid-template-areas:
-    "character description"
-    "character transformations";
+    "character characteristics"
+    "character planet";
   margin-top: 10px;
-  height: calc(100vh - 80px);
+  height: auto;
   gap: 8px;
+  font-size: var(--font-size-base);
 }
 
 .character {
   grid-area: character;
   background-color: var(--background-content);
   border-radius: 6px;
+  display: grid;
+  grid-auto-flow: column;
+  grid-template-columns: 40px 1fr 40px;
+  grid-template-rows: minmax(450px, 700px);
+  place-items: center;
 }
 
-.description {
-  grid-area: description;
+.characters {
+  height: 100%;
+}
+
+.characteristics {
+  grid-area: characteristics;
   background-color: var(--background-content);
+  border: solid 0.5px var(--color-border);
   border-radius: 6px;
   padding: 20px;
 }
 
-.transformations {
-  grid-area: transformations;
+.planet {
+  grid-area: planet;
   background-color: var(--background-content);
+  border: solid 0.5px var(--color-border);
+  padding: 20px;
   border-radius: 6px;
 }
 
@@ -236,7 +254,6 @@ a {
   padding: 20px;
   max-width: 1400px;
   width: 100%;
-  margin-top: 30px;
 }
 
 
@@ -246,14 +263,49 @@ a {
 *********************************
 **/
 
-.description {
+.characteristics {
   color: var(--color-texto-principal);
-  font-size: 18px;
   text-align: justify;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
 }
 
-.description h2 {
-  color: rgb(251, 192, 45);
+.characteristics h2 {
+  color: var(--color-secundario)
+}
+
+.characteristics p {
+  color: var(--color-texto-principal);
+}
+
+.planet {
+  display: grid;
+  grid-template-areas:
+    "titulo       titulo"
+    "descripcion  imagen";
+  grid-template-columns: 1fr 1fr;
+  grid-template-rows: 40px 1fr;
+  gap: 20px;
+}
+
+.planeta-titulo {
+  grid-area: titulo;
+  color: var(--color-secundario);
+  font-size: 18px;
+}
+
+.planeta-descripcion {
+  grid-area: descripcion;
+}
+
+.planeta-imagen {
+  grid-area: imagen;
+}
+
+.planet img {
+  width: 100%;
+  border-radius: 10px;
 }
 
 /**
@@ -290,6 +342,28 @@ a {
   }
 }
 
+@media (max-width: 1024px) {
+
+  .layout-character {
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: auto 1fr;
+    margin-top: 10px;
+    height: auto;
+    gap: 8px;
+    font-size: var(--font-size-base);
+  }
+
+  .planet {
+    display: grid;
+    grid-template-areas:
+      "titulo"
+      "imagen"
+      "descripcion";
+    grid-template-columns: 1fr;
+    grid-template-rows: 40px auto 1fr;
+    gap: 20px;
+  }
+}
 
 @media (max-width: 674px) {
 
@@ -299,7 +373,8 @@ a {
     grid-template-rows: 280px 1fr 40px;
     grid-template-areas:
       "carrusel"
-      "descripcion""botonera";
+      "descripcion"
+      "botonera";
     place-items: center;
     gap: 10px;
     max-width: 90%;
@@ -314,5 +389,18 @@ a {
   .cards {
     grid-template-columns: 1fr;
     gap: 20px;
+  }
+
+  .layout-character {
+    grid-template-columns: 1fr;
+    grid-template-rows: 450px auto 1fr;
+    grid-template-areas:
+      "character"
+      "characteristics"
+      "planet";
+    margin-top: 10px;
+    height: auto;
+    gap: 8px;
+    font-size: var(--font-size-base);
   }
 }

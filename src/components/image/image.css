@@ -13,6 +13,12 @@ img {
   opacity: 0;
   animation: fadeInZoom 1s ease-out forwards;
 }
+img.none{
+  display: none;
+}
+img.active{
+  display: block;
+}
 
 @keyframes fadeInZoom {
   0% {
